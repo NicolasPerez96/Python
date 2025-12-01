@@ -50,11 +50,14 @@ def enemigoRandom():
     return enemigo
 
 
+def iniciarCombate(jugador, enemigo):
+    dañoJugador = jugador.atacar()
+    dañoEnemigo = enemigo.atacar()
     
+    vidaEnemigo = enemigo.vida_actual
+    vidaJugador = jugador.vida_actual
     
-    #"2" : jugador = mago(darNombre),
-    #"3" : jugador = picaro(darNombre)
-
-
-
-
+    while vidaJugador > 0 and vidaEnemigo > 0:
+         vidaEnemigo -= dañoJugador
+         vidaJugador -= dañoEnemigo
+         break
