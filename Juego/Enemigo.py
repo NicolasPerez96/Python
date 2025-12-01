@@ -18,7 +18,7 @@ class goblin(enemigoGenerico):
     def __init__(self):        
         
         super().__init__(
-            nombre = "Goblin" 
+            nombre = "Goblin",
             daño = 15,
             defensa = 5,
             vida = 50            
@@ -30,7 +30,7 @@ class lobo(enemigoGenerico):
     def __init__(self):
         
         super().__init__(
-            nombre = "Lobo"
+            nombre = "Lobo",
             daño = 25,
             defensa = 8,
             vida = 75
@@ -40,7 +40,7 @@ class troll(enemigoGenerico):
     def __init__(self):
         
         super().__init__(
-            nombre = "Troll"
+            nombre = "Troll",
             daño = 40,
             defensa = 15,
             vida = 150
