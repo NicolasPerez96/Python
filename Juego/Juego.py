@@ -14,6 +14,32 @@ def darNombre():
     nombre = input("Introduzca el nombre de su campeon: ")
     return nombre
 
+
+def enemigoRandom():    
+    enemigos = [goblin, lobo, troll]
+
+    enemigo = random.choice(enemigos)
+    return enemigo
+
+
+def iniciarCombate(jugador, enemigo):
+    dañoJugador = jugador.atacar()
+    dañoEnemigo = enemigo.atacar() 
+    
+    while jugador.vida_actual > 0 and enemigo.vida_actual > 0:
+         enemigo.recibirDaño(dañoJugador)
+         if enemigo.vida_actual <= 0:
+             print(f"{enemigo.nombre} ha sido derrotado.")
+             break
+         jugador.recibirDaño(dañoEnemigo)
+         if jugador.vida_actual <= 0:
+             print(f"""
+                   {jugador.nombre} ha sido derrotado.
+                   Fin de la aventura.""")
+             break
+         
+
+
 nuevo_campeon = input("""
                       1- Guerrero
                       2- Mago
@@ -31,33 +57,17 @@ elif nuevo_campeon == "3":
     jugador = picaro(nuevo_nombre)
 else:
     print("No se selecciono ningun campeon.")
-    
 
-print(f"""Su campeon se llama {jugador.nombre} y tiene las estadisticas:
-      vida: {jugador.vida_actual}
-      fuerza: {jugador.fuerza}
-      agilidad: {jugador.agilidad}
-      velocidad: {jugador.velocidad}
-      inteligencia: {jugador.inteligencia}
-      -----------------------------------
+
+
+
+# print(f"""Su campeon se llama {jugador.nombre} y tiene las estadisticas:
+#       vida: {jugador.vida_actual}
+#       fuerza: {jugador.fuerza}
+#       agilidad: {jugador.agilidad}
+#       velocidad: {jugador.velocidad}
+#       inteligencia: {jugador.inteligencia}
+#       -----------------------------------
       
-      Suerte con su aventura.""")
+#       Suerte con su aventura.""")
     
-def enemigoRandom():    
-    enemigos = [goblin, lobo, troll]
-
-    enemigo = random.choice(enemigos)
-    return enemigo
-
-
-def iniciarCombate(jugador, enemigo):
-    dañoJugador = jugador.atacar()
-    dañoEnemigo = enemigo.atacar()
-    
-    vidaEnemigo = enemigo.vida_actual
-    vidaJugador = jugador.vida_actual
-    
-    while vidaJugador > 0 and vidaEnemigo > 0:
-         vidaEnemigo -= dañoJugador
-         vidaJugador -= dañoEnemigo
-         break
