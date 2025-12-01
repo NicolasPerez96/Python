@@ -7,8 +7,20 @@ class campeon:
         self.velocidad = velocidad
         self.inteligencia = inteligencia
         self.vida = 100
+        self.vida_actual
+        #self.vida_restante = self.vida_actual
         
-class guerrero:
+    def recibirDaño (self, dañoRecibido):
+        self.vida_actual -= dañoRecibido
+        self.vida_restante = self.vida_actual
+        print(f"{self.nombre} recibio {dañoRecibido} le queda {self.vida_restante} de vida.")
+        return self.vida_actual
+    
+    def atacar(self, daño):
+        daño = self.fuerza * self.agilidad 
+        return daño
+        
+class guerrero(campeon):
     def __init__(self, nombre):
     
         super().__init__(
@@ -19,8 +31,13 @@ class guerrero:
             inteligencia = 5                                  
         )
         self.vida = 200
+        self.vida_actual = self.vida
+        self.daño = 30
+        self.daño_actual = self.daño
+    
+        
 
-class mago:
+class mago(campeon):
     def __init__(self, nombre):
         
         super().__init__(
@@ -30,9 +47,13 @@ class mago:
             velocidad = 10,
             inteligencia = 20
         )
-        self.mana = 200
+        #self.mana = 200
         
-class picaro:
+    #def lanzarMagia(self, dañoMagico):
+    #    dañoMagico = self.inteligencia
+    #    return dañoMagico
+        
+class picaro(campeon):
     def __init__(self, nombre):
         
         super().__init__(
@@ -42,7 +63,6 @@ class picaro:
             velocidad = 16,
             inteligencia = 12
         )
-        self.probCritica = 1.5
-        
-
+       # self.probCritica = 1.5
+    
         
