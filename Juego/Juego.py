@@ -2,41 +2,17 @@ from Heroe import campeon, guerrero, mago, picaro
 
 from Enemigo import enemigoGenerico, goblin, lobo, troll
 
-import random
+import Batalla
 
 
-
+#Funcion para dar nombre al nuevo campeon
 def darNombre():
     nombre = input("Introduzca el nombre de su campeon: ")
     return nombre
 
 
-def enemigoRandom():    
-    enemigos = [goblin, lobo, troll]
-
-    enemigo_random = random.choice(enemigos)
-    
-    enemigo_seleccionado = enemigo_random()
-    return enemigo_seleccionado
-
-
-def iniciarCombate(jugador, enemigo):     
-    
-    while jugador.vida_actual > 0 and enemigo.vida_actual > 0:
-         dañoJugador = jugador.atacar()
-         enemigo.recibirDaño(dañoJugador)
-         if enemigo.vida_actual <= 0:
-             print(f"{enemigo.nombre} ha sido derrotado.")
-             break
-         dañoEnemigo = enemigo.atacar()
-         jugador.recibirDaño(dañoEnemigo)
-         if not jugador.estaVivo():
-             print(f"""
-                   {jugador.nombre} ha sido derrotado.
-                   Fin de la aventura.""")
-             break
          
-
+# Modulo para definir el campeon a utilizar
 def nuevaAventura(): 
     nuevo_campeon = input("""
                         1- Guerrero
@@ -59,23 +35,11 @@ def nuevaAventura():
 
 
 
-def menuCombate(jugador):
-    enemigo = enemigoRandom()
-    print (f"Te has topado con {enemigo.nombre}")
-    
-    if jugador.estaVivo() :        
-        opcion = input("""
-                    ---------------------
-                    1- Atacar
-                    2- Huir
-                    Op: """)
-        if opcion == "1":
-            iniciarCombate(jugador, enemigo)
-        else:
-            return
 #----------------------------------------------
 
+# Modulo para avanzar con la aventura, el mismo es llamado en loop para avanzar.
 def jugar(jugador):
+    
     print("Elije una opcion: ")
     opcion = input("""
           1- Combatir
@@ -84,19 +48,22 @@ def jugar(jugador):
           4- Salir
           Op: """)
     if opcion == "1":
-        menuCombate(jugador)
+        Batalla.menuCombate(jugador)
     elif opcion == "2":
         print(f"{jugador.nombre} descansa en la fogata.")
-        print(f"{jugador.nombre} recupera 20 de vida")
+        
         jugador.recuperarVida(20)
         return True
     elif opcion == "3":
-        print(f"""Su campeon se llama {jugador.nombre} y tiene las estadisticas:
+        print(f"""Nombre: {jugador.nombre} 
               vida: {jugador.vida_actual}
+              experiencia: {jugador.experiencia}
               fuerza: {jugador.fuerza}
               agilidad: {jugador.agilidad}
               velocidad: {jugador.velocidad}
-              inteligencia: {jugador.inteligencia}""")
+              inteligencia: {jugador.inteligencia}
+              
+              experiencia necesaria para subir: {jugador.experiencia_subir_nivel}""")
     elif opcion == "4":
         print("Seguro desea salir?")
         opcion2 = input("""
@@ -111,7 +78,8 @@ def jugar(jugador):
         print("Opcion incorrecta.")
         return
 
-
+# Modulo principal de la aventura, aqui comienza todo
+# Jugador devuelve un booleano en caso de querer salir o si el mismo es vacio.
 def comenzarAventura():
     print("""Bienvenidos a Terminal RPG
       -----------------------------
@@ -158,4 +126,3 @@ comenzarAventura()
 
 
 
-    
