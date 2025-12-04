@@ -1,3 +1,5 @@
+import random
+
 class enemigoGenerico:
     def __init__(self, nombre, daño, defensa, vida):
         self.nombre = nombre
@@ -13,6 +15,8 @@ class enemigoGenerico:
     
     def atacar(self):
         return self.daño   
+    
+
 
 class goblin(enemigoGenerico):
     def __init__(self):        
