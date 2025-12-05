@@ -10,7 +10,7 @@ class campeon:
         self.vida_actual = self.vida
         
         self.experiencia = 0
-        self.experiencia_subir_nivel = self.experiencia + (self.experiencia * 0.50)
+        self.experiencia_subir_nivel = 100
         self.nivel = 1
         
         self.mana = 100
@@ -43,7 +43,7 @@ class campeon:
     
     def subirNivel(self):
         print (f"{self.nombre} ha subido de nivel!")
-        
+        self.experiencia_subir_nivel = self.experiencia + (self.experiencia * 0.50)
         if isinstance(self, guerrero):
             print(f"""Tus estadisticas han subido!
                   Vida +50
@@ -56,8 +56,10 @@ class campeon:
             self.agilidad += 2
             self.velocidad += 2
             self.inteligencia += 1
+            self.vida += 50
             self.vida_actual += 50
             self.mana += 20
+            self.mana_actual = self.mana
         elif isinstance(self, mago):
             print(f"""Tus estadisticas han subido!
                   Vida +20
@@ -71,7 +73,9 @@ class campeon:
             self.velocidad += 3
             self.inteligencia += 4
             self.vida_actual += 20
+            self.vida += 20
             self.mana_actual += 75
+            self.mana_actual = self.mana
         elif isinstance(self, picaro):
             print(f"""Tus estadisticas han subido!
                   Vida +35
@@ -85,7 +89,9 @@ class campeon:
             self.velocidad += 5
             self.inteligencia += 2
             self.vida_actual += 35
+            self.vida += 35
             self.mana_actual += 25
+            self.mana_actual = self.mana
         
         
 class guerrero(campeon):
